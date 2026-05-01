@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Union Trip · May 15–16, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #f5ede0;
+    --ocean: #1a5f7a;
+    --ocean-light: #2d8aad;
+    --ocean-dark: #0d3d52;
+    --wave: #4db8d4;
+    --sunset: #e8703a;
+    --sunset-warm: #f0a868;
+    --night: #0b1e2d;
+    --night-mid: #122b3e;
+    --foam: #e8f6fa;
+    --text-dark: #1a2b35;
+    --text-mid: #4a6375;
+    --gold: #c9922a;
+    --green-forest: #2d6a4f;
+    --day1: #1a5f7a;
+    --day2: #c97c2a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--night);
+    color: var(--sand);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(160deg, #0b1e2d 0%, #0d3d52 40%, #1a5f7a 100%);
+  }
+
+  .hero-waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+  }
+
+  .wave-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 120px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%230b1e2d' fill-opacity='0.6' d='M0,64L48,58.7C96,53,192,43,288,48C384,53,480,75,576,80C672,85,768,75,864,64C960,53,1056,43,1152,48C1248,53,1344,75,1392,80L1440,85L1440,120L0,120Z'/%3E%3C/svg%3E") repeat-x;
+    animation: waveFlow 8s linear infinite;
+  }
+  .wave-layer:nth-child(2) {
+    opacity: 0.4;
+    animation: waveFlow 12s linear infinite reverse;
+    bottom: 10px;
+  }
+  .wave-layer:nth-child(3) {
+    opacity: 0.2;
+    animation: waveFlow 6s linear infinite;
+    bottom: 20px;
+  }
+
+  @keyframes waveFlow {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .stars {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--dur, 3s) infinite alternate;
+  }
+  @keyframes twinkle { 0% { opacity: 0.2; } 100% { opacity: 1; } }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+  }
+
+  .trip-badge {
+    display: inline-block;
+    background: rgba(77,184,212,0.15);
+    border: 1px solid rgba(77,184,212,0.4);
+    color: var(--wave);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    padding: 0.4rem 1.2rem;
+    border-radius: 2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.8s ease 0.1s both;
+  }
+
+  .hero h1 span {
+    color: var(--wave);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: rgba(245,237,224,0.7);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  .date-pills {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+
+  .date-pill {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 0.6rem 1.4rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    color: var(--sand);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+  .date-pill:hover, .date-pill.active {
+    background: var(--ocean);
+    border-color: var(--wave);
+    color: white;
+  }
+  .date-pill .pill-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(245,237,224,0.4);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    animation: bounce 2s infinite;
+    z-index: 2;
+  }
+  .scroll-hint svg { width: 20px; opacity: 0.5; }
+
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* MAIN LAYOUT */
+  .app {
+    position: relative;
+  }
+
+  .day-section {
+    min-height: 100vh;
+    position: relative;
+  }
+
+  .day-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .day1-header { background: rgba(11, 30, 45, 0.92); border-bottom-color: rgba(77,184,212,0.2); }
+  .day2-header { background: rgba(30, 15, 5, 0.92); border-bottom-color: rgba(201,122,42,0.2); }
+
+  .day-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .day1-header .day-label { color: var(--wave); }
+  .day2-header .day-label { color: var(--sunset-warm); }
+
+  .day-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+
+  .day-date {
+    font-size: 0.8rem;
+    color: rgba(245,237,224,0.5);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* CONTENT LAYOUT */
+  .day-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    height: calc(100vh - 65px);
+    position: sticky;
+    top: 65px;
+  }
+
+  /* STOP LIST PANEL */
+  .stops-panel {
+    overflow-y: auto;
+    padding: 1.5rem;
+    background: var(--night);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(77,184,212,0.3) transparent;
+  }
+
+  .stops-panel::-webkit-scrollbar { width: 4px; }
+  .stops-panel::-webkit-scrollbar-track { background: transparent; }
+  .stops-panel::-webkit-scrollbar-thumb { background: rgba(77,184,212,0.3); border-radius: 4px; }
+
+  /* STOP CARD */
+  .stop-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    margin-bottom: 0.5rem;
+    border: 1px solid transparent;
+  }
+  .stop-card:hover {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.08);
+  }
+  .stop-card.active {
+    background: rgba(77,184,212,0.08);
+    border-color: rgba(77,184,212,0.25);
+  }
+  .day2 .stop-card.active {
+    background: rgba(201,122,42,0.08);
+    border-color: rgba(201,122,42,0.25);
+  }
+
+  .stop-timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 32px;
+  }
+
+  .stop-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--ocean-light);
+    border: 2px solid var(--wave);
+    flex-shrink: 0;
+    transition: all 0.3s;
+    z-index: 1;
+  }
+  .stop-card.active .stop-dot {
+    background: var(--wave);
+    box-shadow: 0 0 0 4px rgba(77,184,212,0.2);
+  }
+  .day2 .stop-dot { background: var(--gold); border-color: var(--sunset-warm); }
+  .day2 .stop-card.active .stop-dot {
+    background: var(--sunset-warm);
+    box-shadow: 0 0 0 4px rgba(201,122,42,0.2);
+  }
+
+  .stop-line {
+    width: 2px;
+    flex: 1;
+    background: rgba(255,255,255,0.08);
+    margin: 4px 0;
+    min-height: 20px;
+  }
+
+  .stop-body { flex: 1; }
+
+  .stop-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(245,237,224,0.45);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.25rem;
+  }
+
+  .stop-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--sand);
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+
+  .stop-type-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 1rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+
+  .badge-landmark { background: rgba(45,106,79,0.3); color: #7dd4a8; }
+  .badge-food { background: rgba(201,122,42,0.3); color: #f0c070; }
+  .badge-nature { background: rgba(45,106,79,0.3); color: #86efac; }
+  .badge-rest { background: rgba(100,100,120,0.3); color: #c4c4d4; }
+  .badge-nightlife { background: rgba(90,30,100,0.3); color: #d4a0e8; }
+  .badge-surf { background: rgba(77,184,212,0.3); color: #7dd8f0; }
+  .badge-travel { background: rgba(80,80,100,0.3); color: #b0b0c0; }
+  .badge-coffee { background: rgba(100,60,20,0.3); color: #e0a860; }
+
+  .stop-preview {
+    font-size: 0.8rem;
+    color: rgba(245,237,224,0.45);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* MAP + DETAIL PANEL */
+  .map-detail-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--night-mid);
+  }
+
+  .map-container {
+    flex: 0 0 55%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .map-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0d2535 0%, #1a4060 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    color: rgba(245,237,224,0.3);
+    font-size: 0.85rem;
+  }
+
+  /* DETAIL CARD */
+  .detail-panel {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(77,184,212,0.3) transparent;
+  }
+
+  .detail-panel::-webkit-scrollbar { width: 4px; }
+  .detail-panel::-webkit-scrollbar-thumb { background: rgba(77,184,212,0.3); border-radius: 4px; }
+
+  .detail-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: rgba(245,237,224,0.25);
+    text-align: center;
+    gap: 0.75rem;
+  }
+  .detail-empty svg { width: 40px; opacity: 0.3; }
+  .detail-empty p { font-size: 0.85rem; }
+
+  .detail-content { display: none; }
+  .detail-content.visible { display: block; }
+
+  .detail-header {
+    margin-bottom: 1rem;
+  }
+
+  .detail-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--wave);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+  }
+  .day2 .detail-time { color: var(--sunset-warm); }
+
+  .detail-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .detail-location {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: rgba(245,237,224,0.45);
+  }
+  .detail-location svg { width: 12px; flex-shrink: 0; }
+
+  .detail-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 1rem 0;
+  }
+
+  .detail-desc {
+    font-size: 0.875rem;
+    line-height: 1.75;
+    color: rgba(245,237,224,0.75);
+    margin-bottom: 1rem;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 0.75rem;
+  }
+  .info-card .ic-label {
+    font-size: 0.65rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em;
+    color: rgba(245,237,224,0.35);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .info-card .ic-value {
+    font-size: 0.85rem;
+    color: var(--sand);
+    font-weight: 500;
+  }
+  .info-card .ic-value.fee { color: #7dd4a8; }
+  .info-card .ic-value.free { color: #86efac; }
+
+  .tips-section {
+    background: rgba(77,184,212,0.06);
+    border: 1px solid rgba(77,184,212,0.15);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  .day2 .tips-section {
+    background: rgba(201,122,42,0.06);
+    border-color: rgba(201,122,42,0.15);
+  }
+
+  .tips-label {
+    font-size: 0.65rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.12em;
+    color: var(--wave);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .day2 .tips-label { color: var(--sunset-warm); }
+
+  .tips-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .tips-list li {
+    font-size: 0.82rem;
+    color: rgba(245,237,224,0.7);
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.5;
+  }
+  .tips-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--wave);
+  }
+  .day2 .tips-list li::before { color: var(--sunset-warm); }
+
+  .rec-section {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+
+  .rec-label {
+    font-size: 0.65rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .rec-text {
+    font-size: 0.82rem;
+    color: rgba(245,237,224,0.65);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* OVERALL SCROLL LAYOUT */
+  .day-wrapper {
+    padding-bottom: 0;
+  }
+
+  .day-static {
+    height: 100vh;
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .day-content {
+      grid-template-columns: 1fr;
+      height: auto;
+      position: relative;
+      top: 0;
+    }
+    .stops-panel {
+      max-height: 50vh;
+    }
+    .map-detail-panel {
+      height: 80vh;
+    }
+    .map-container {
+      flex: 0 0 50%;
+    }
+  }
+
+  /* SECTION DIVIDER */
+  .section-divider {
+    background: var(--night);
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+  .section-divider::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(77,184,212,0.3), transparent);
+  }
+
+  .divider-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: rgba(245,237,224,0.3);
+    text-transform: uppercase;
+  }
+
+  /* MAP OVERLAY BUTTON */
+  .map-open-btn {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: var(--ocean);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    z-index: 10;
+    transition: background 0.2s;
+  }
+  .map-open-btn:hover { background: var(--ocean-light); }
+
+  .rating-stars {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    color: var(--gold);
+    margin-top: 0.2rem;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--night);
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    color: rgba(245,237,224,0.25);
+    font-size: 0.8rem;
+  }
+
+  .timeline-connector {
+    text-align: center;
+    padding: 0.3rem 0;
+    color: rgba(245,237,224,0.15);
+    font-size: 0.7rem;
+    font-family: 'DM Mono', monospace;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="stars" id="stars"></div>
+
+  <div class="hero-content">
+    <div class="trip-badge">✈ Road Trip · QC → La Union</div>
+    <h1>La <span>Union</span><br>2026</h1>
+    <p class="hero-sub">May 15 – 16, 2026 &nbsp;·&nbsp; 2 Days, 1 Night</p>
+    <div class="date-pills">
+      <a href="#day1" class="date-pill">
+        <span class="pill-dot" style="background:#4db8d4"></span>
+        Day 1 · May 15 — The Explorer's Day
+      </a>
+      <a href="#day2" class="date-pill">
+        <span class="pill-dot" style="background:#e8703a"></span>
+        Day 2 · May 16 — Surf & Sunset
+      </a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+
+  <div class="hero-waves">
+    <div class="wave-layer"></div>
+    <div class="wave-layer"></div>
+    <div class="wave-layer"></div>
+  </div>
+</div>
+
+
+<!-- ======================== DAY 1 ======================== -->
+<div class="day-section" id="day1">
+  <div class="day-header day1-header">
+    <div>
+      <div class="day-label">Day 01 of 02</div>
+      <div class="day-title">The Explorer's Day</div>
+    </div>
+    <div class="day-date">Friday, May 15, 2026</div>
+  </div>
+
+  <div class="day-content" id="day1-content">
+    <!-- STOPS -->
+    <div class="stops-panel" id="day1-stops">
+
+      <div class="stop-card" data-stop="d1-s0" onclick="selectStop('d1-s0','day1')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">12:00 MN · May 14→15</div>
+          <div class="stop-name">Depart from QC</div>
+          <span class="stop-type-badge badge-travel">Travel</span>
+          <div class="stop-preview">106 Metom St., Commonwealth, QC — overnight drive via NLEX/SCTEX with tolls.</div>
+        </div>
+      </div>
+
+      <div class="stop-card" data-stop="d1-s1" onclick="selectStop('d1-s1','day1')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">6:30 AM</div>
+          <div class="stop-name">Baluarte Watchtower</div>
+          <span class="stop-type-badge badge-landmark">Historic Landmark</span>
+          <div class="stop-preview">A 400-year-old coral-block watchtower at Luna, La Union. Sunrise views over the coast.</div>
+        </div>
+      </div>
+
+      <div class="stop-card" data-stop="d1-s2" onclick="selectStop('d1-s2','day1')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">7:30 AM</div>
+          <div class="stop-name">Bahay na Bato & Pebble Beach</div>
+          <span class="stop-type-badge badge-landmark">Cultural Site</span>
+          <div class="stop-preview">Stone house art gallery beside a unique pebble beach. Instagram-worthy rustic architecture.</div>
+        </div>
+      </div>
+
+      <div class="stop-card" data-stop="d1-s3" onclick="selectStop('d1-s3','day1')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">9:30 AM</div>
+          <div class="stop-name">Almeda Man-Made Forest</div>
+          <span class="stop-type-badge badge-nature">Nature Stop</span>
+          <div class="stop-preview">A stunning canopy of mahogany trees lining the road — perfect for photos and a cool breather.</div>
+        </div>
+      </div>
+
+      <div class="stop-card" data-stop="d1-s4" onclick="selectStop('d1-s4','day1')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">10:00 AM</div>
+          <div class="stop-name">Brunch at Kabsat</div>
+          <span class="stop-type-badge badge-food">Restaurant</span>
+          <div class="stop-preview">Beachfront Filipino dining in San Juan. Great food, open-air setting. Cash only.</div>
+        </div>
+      </div>
+
+      <div class="stop-card" data-stop="d1-s5" onclick="selectStop('d1-s5','day1')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">11:30 AM</div>
+          <div class="stop-name">Travel to Auntie Ludy's</div>
+          <span class="stop-type-badge badge-travel">Transit</span>
+          <div class="stop-preview">Camansi Area, San Fernando, La Union — your home base for the trip.</div>
+        </div>
+      </div>
+
+      <div class="stop-card" data-stop="d1-s6" onclick="selectStop('d1-s6','day1')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">12:00 NN – 4:00 PM</div>
+          <div class="stop-name">Rest at Auntie Ludy's</div>
+          <span class="stop-type-badge badge-rest">Rest</span>
+          <div class="stop-preview">Lunch and much-needed rest after the long overnight drive. Recharge for the afternoon.</div>
+        </div>
+      </div>
+
+      <div class="stop-card" data-stop="d1-s7" onclick="selectStop('d1-s7','day1')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">4:30 – 6:30 PM</div>
+          <div class="stop-name">The Mansion Estates</div>
+          <span class="stop-type-badge badge-landmark">Viewpoint</span>
+          <div class="stop-preview">Hilltop overlooking San Juan beach — stunning for sunset with coffee or cocktails.</div>
+        </div>
+      </div>
+
+      <div class="stop-card" data-stop="d1-s8" onclick="selectStop('d1-s8','day1')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">6:30 – 8:30 PM</div>
+          <div class="stop-name">Dinner & Nightlife Strip</div>
+          <span class="stop-type-badge badge-nightlife">Dining & Nightlife</span>
+          <div class="stop-preview">Tavern by the Sea for dinner, then explore Flotsam & Jetsam and the Urbiztondo strip.</div>
+        </div>
+      </div>
+
+      <div class="stop-card" data-stop="d1-s9" onclick="selectStop('d1-s9','day1')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">8:30 – 9:00 PM</div>
+          <div class="stop-name">Return to Auntie Ludy's</div>
+          <span class="stop-type-badge badge-travel">Travel</span>
+          <div class="stop-preview">Head back to base for the night. Rest up — surfing starts early tomorrow!</div>
+        </div>
+      </div>
+
+    </div><!-- /stops-panel -->
+
+    <!-- MAP + DETAIL -->
+    <div class="map-detail-panel">
+      <div class="map-container" id="day1-map">
+        <iframe
+          id="day1-iframe"
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Baluarte+Watchtower+Luna+La+Union+Philippines&zoom=14"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <a class="map-open-btn" id="day1-maplink" href="https://maps.google.com/?q=Baluarte+Watchtower+Luna+La+Union" target="_blank">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Open in Google Maps
+        </a>
+      </div>
+
+      <div class="detail-panel" id="day1-detail">
+        <!-- Default empty state -->
+        <div class="detail-empty" id="day1-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <p>Click any stop on the left to see details</p>
+        </div>
+
+        <!-- STOP DETAILS (hidden until clicked) -->
+        <div class="detail-content" id="detail-d1-s0">
+          <div class="detail-header">
+            <div class="detail-time">12:00 MN · May 14 → 15</div>
+            <div class="detail-name">Departure from Quezon City</div>
+            <div class="detail-location">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+              106 Metom St., Commonwealth, QC
+            </div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">Begin your La Union adventure with a midnight departure from Quezon City. Leaving at midnight lets you beat the Metro Manila traffic and arrive refreshed at your first stop by sunrise.</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Drive Time</div><div class="ic-value">~6 hours</div></div>
+            <div class="info-card"><div class="ic-label">Route</div><div class="ic-value">NLEX → SCTEX → TPLEX</div></div>
+            <div class="info-card"><div class="ic-label">Toll Est.</div><div class="ic-value">₱400–600 (one way)</div></div>
+            <div class="info-card"><div class="ic-label">Distance</div><div class="ic-value">~280 km</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Road Trip Tips</div>
+            <ul class="tips-list">
+              <li>Fill up the gas tank before departure — petrol stations along the expressway can be pricier</li>
+              <li>Bring cash for toll gates (RFID recommended to save time)</li>
+              <li>Designate a co-driver for the stretch after SCTEX — fatigue sets in around 3–4 AM</li>
+              <li>Stop at a Petron or Shell along TPLEX for a quick coffee break around 3 AM</li>
+              <li>Have a playlist or podcast ready for the drive!</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-content" id="detail-d1-s1">
+          <div class="detail-header">
+            <div class="detail-time">6:30 AM · Day 1</div>
+            <div class="detail-name">Baluarte Watchtower</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Luna, La Union</div>
+            <div class="rating-stars">★★★★½ <span style="color:rgba(245,237,224,0.4);font-size:0.7rem">(2,136 reviews)</span></div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">One of La Union's most historically significant landmarks — a 400-year-old watchtower built from coral blocks, adobe, and bricks bound together with lime and egg whites. Originally constructed by pre-Hispanic inhabitants and later used by the Spanish colonial forces as a lookout against pirates, it also served as a US Army communication post during WWII. The circular tower stands about 6–7 meters high and offers sweeping coastal views, especially beautiful at sunrise.</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Entrance Fee</div><div class="ic-value free">₱20 env. fee</div></div>
+            <div class="info-card"><div class="ic-label">Hours</div><div class="ic-value">Open 24 hours</div></div>
+            <div class="info-card"><div class="ic-label">Best For</div><div class="ic-value">History, Photos</div></div>
+            <div class="info-card"><div class="ic-label">Time Needed</div><div class="ic-value">30–45 mins</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Tips</div>
+            <ul class="tips-list">
+              <li>The ₱20 environmental fee may cover other La Union attractions — keep your ticket</li>
+              <li>Go early (you're already there at sunrise!) to avoid crowds and local photo-guide pressure</li>
+              <li>The pebble beach is just nearby — great for early morning walk after the tower</li>
+              <li>A small steak restaurant is in the area if you need a coffee/snack</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-content" id="detail-d1-s2">
+          <div class="detail-header">
+            <div class="detail-time">7:30 AM · Day 1</div>
+            <div class="detail-name">Bahay na Bato & Pebble Beach</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Luna, La Union</div>
+            <div class="rating-stars">★★★★½ <span style="color:rgba(245,237,224,0.4);font-size:0.7rem">(307 reviews)</span></div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">Bahay na Bato (House of Stone) is a charming cultural attraction built from the very pebbles of its beach. Inside you'll find different art galleries, sculptures, and antique Filipino architecture. The beach in front is unique — covered in smooth river pebbles instead of sand, creating a soothing, almost therapeutic crunch underfoot. The sound of the waves rolling over pebbles is absolutely serene in the early morning.</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Entrance Fee</div><div class="ic-value free">Covered by ₱20 env. fee</div></div>
+            <div class="info-card"><div class="ic-label">Hours</div><div class="ic-value">6:00 AM – 6:00 PM</div></div>
+            <div class="info-card"><div class="ic-label">Best For</div><div class="ic-value">Art, Culture, Photos</div></div>
+            <div class="info-card"><div class="ic-label">Time Needed</div><div class="ic-value">45–60 mins</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Tips</div>
+            <ul class="tips-list">
+              <li>Wear comfortable shoes — pebbles can be tricky on bare feet</li>
+              <li>There's a small café/store inside for refreshments and souvenirs</li>
+              <li>The "bahay kubo" architecture is perfect for morning golden-hour photos</li>
+              <li>Arrive early to enjoy the quiet before other tourists arrive</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-content" id="detail-d1-s3">
+          <div class="detail-header">
+            <div class="detail-time">9:30 AM · Day 1</div>
+            <div class="detail-name">Almeda Man-Made Forest</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Balaoan, La Union</div>
+            <div class="rating-stars">★★★★½ <span style="color:rgba(245,237,224,0.4);font-size:0.7rem">(273 reviews)</span></div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">A picturesque stretch of towering mahogany trees lining the Bacnotan–Luna–Balaoan Road, creating a natural canopy tunnel. While not a developed park, the forest creates a genuinely magical, cool, and shaded atmosphere. It's a beloved stopover for road trippers heading to or from La Union — perfect for quick photos and stretching your legs after a long drive.</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Entrance Fee</div><div class="ic-value free">FREE</div></div>
+            <div class="info-card"><div class="ic-label">Hours</div><div class="ic-value">Open 24 hours</div></div>
+            <div class="info-card"><div class="ic-label">Best For</div><div class="ic-value">Quick stop, Photos</div></div>
+            <div class="info-card"><div class="ic-label">Time Needed</div><div class="ic-value">15–30 mins</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Tips</div>
+            <ul class="tips-list">
+              <li>This is an active road — be very careful when taking photos near or on the highway</li>
+              <li>Best angle: park safely on the shoulder and shoot looking down the road</li>
+              <li>Morning light filters beautifully through the canopy — great for nature shots</li>
+              <li>Bring insect repellent if you plan to linger longer</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-content" id="detail-d1-s4">
+          <div class="detail-header">
+            <div class="detail-time">10:00 AM · Day 1 (Brunch)</div>
+            <div class="detail-name">Kabsat Restaurant</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>San Juan, La Union</div>
+            <div class="rating-stars">★★★★ <span style="color:rgba(245,237,224,0.4);font-size:0.7rem">(2,544 reviews)</span></div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">Kabsat is a beloved beachfront Filipino restaurant in San Juan with a relaxed coastal vibe, great natural lighting, and big fans to keep you cool. The menu blends local and modern dishes, with fast and friendly service that impresses even during peak hours. A must-try when in La Union — arrive early to beat the crowds, especially on weekends.</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Hours</div><div class="ic-value">8:00 AM – 12:00 MN</div></div>
+            <div class="info-card"><div class="ic-label">Price Range</div><div class="ic-value">₱₱ (Moderate)</div></div>
+            <div class="info-card"><div class="ic-label">Payment</div><div class="ic-value fee">CASH ONLY</div></div>
+            <div class="info-card"><div class="ic-label">Parking</div><div class="ic-value">₱150/visit</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Tips</div>
+            <ul class="tips-list">
+              <li>Bring cash — credit/debit cards may not be accepted</li>
+              <li>Arriving at 10 AM is ideal — before the weekend lunch rush</li>
+              <li>Outdoor seating faces the beach — grab a table near the edge for the best view</li>
+              <li>Try the fresh seafood dishes and shakes (though order shakes in real glasses if possible)</li>
+              <li>Parking can be tight; drop off passengers first then find parking</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-content" id="detail-d1-s5">
+          <div class="detail-header">
+            <div class="detail-time">11:30 AM · Day 1</div>
+            <div class="detail-name">Transit to Auntie Ludy's</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Camansi Area, San Fernando, La Union</div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">A short drive from San Juan to your home base in San Fernando. Auntie Ludy's place in the Camansi area will serve as your HQ for the trip — a comfortable family base in the heart of La Union's capital city.</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Drive Time</div><div class="ic-value">~20–30 mins</div></div>
+            <div class="info-card"><div class="ic-label">Direction</div><div class="ic-value">South along Mac-Arthur Hwy</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Tips</div>
+            <ul class="tips-list">
+              <li>San Fernando is the provincial capital — more amenities, pharmacies, and ATMs here</li>
+              <li>Stock up on essentials before heading to Auntie Ludy's if needed</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-content" id="detail-d1-s6">
+          <div class="detail-header">
+            <div class="detail-time">12:00 NN – 4:00 PM · Day 1</div>
+            <div class="detail-name">Rest at Auntie Ludy's</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Camansi, San Fernando, La Union</div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">After an overnight drive and a full morning of sightseeing, this 4-hour rest is essential. Have lunch at Auntie Ludy's, take a proper nap, freshen up, and recharge before the evening program. You'll thank yourself later!</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Duration</div><div class="ic-value">4 hours</div></div>
+            <div class="info-card"><div class="ic-label">Activity</div><div class="ic-value">Lunch + Nap + Freshen up</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Tips</div>
+            <ul class="tips-list">
+              <li>Set an alarm for 4:00 PM — you don't want to miss The Mansion's sunset window</li>
+              <li>Charge all devices during this rest period</li>
+              <li>Prepare your camera/phone for sunset shots later</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-content" id="detail-d1-s7">
+          <div class="detail-header">
+            <div class="detail-time">4:30 – 6:30 PM · Day 1</div>
+            <div class="detail-name">The Mansion Estates</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Talogtog, San Juan, La Union</div>
+            <div class="rating-stars">★★★★½ <span style="color:rgba(245,237,224,0.4);font-size:0.7rem">(66 reviews)</span></div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">A stunning hilltop venue perched above San Juan with breathtaking panoramic views of the coastline and mountains. The Mansion is best experienced during sunset — enjoy coffee or cocktails while watching the sun dip into the West Philippine Sea. The road up is steep and challenging (3 very steep sections), so ensure your vehicle is in good condition. Well worth the effort.</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Entrance</div><div class="ic-value">Consumption-based</div></div>
+            <div class="info-card"><div class="ic-label">Best Time</div><div class="ic-value">5:00–6:30 PM</div></div>
+            <div class="info-card"><div class="ic-label">Coffee Shop</div><div class="ic-value fee">Open (limited menu)</div></div>
+            <div class="info-card"><div class="ic-label">Access</div><div class="ic-value">Steep drive or walk up stairs</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Tips</div>
+            <ul class="tips-list">
+              <li>The road is extremely steep — use low gear and make sure your brakes are good</li>
+              <li>Alternatively, park at the bottom and take the pedestrian stairs up</li>
+              <li>Arrive by 4:30 PM to settle in before golden hour begins around 5:30 PM</li>
+              <li>The iced latte is recommended; food options are currently limited</li>
+              <li>Wear comfortable shoes for the walk — it can be slippery in light sandals</li>
+            </ul>
+          </div>
+          <div class="rec-section">
+            <div class="rec-label">⭐ Why Visit</div>
+            <p class="rec-text">"Breathtaking view — striking vista of natural landscapes like mountains and ocean. The fresh air is incredible. Just make sure you have a good driver going uphill."</p>
+          </div>
+        </div>
+
+        <div class="detail-content" id="detail-d1-s8">
+          <div class="detail-header">
+            <div class="detail-time">6:30 – 8:30 PM · Day 1</div>
+            <div class="detail-name">Tavern by the Sea + Nightlife Strip</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Urbiztondo, San Juan, La Union</div>
+            <div class="rating-stars">Tavern ★★★★ · Flotsam ★★★★</div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">Start with dinner at KM 277 Tavern by the Sea — a spacious beachside complex with multiple food stalls, a DJ, and live bands performing by the shore. After dinner, explore the lively Urbiztondo strip: pop into Flotsam & Jetsam (open Fri–Sat nights) for beach drinks and music, or simply stroll the strip and soak in the weekend El-Yu energy.</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Tavern Hours</div><div class="ic-value">Open 24 hours</div></div>
+            <div class="info-card"><div class="ic-label">Flotsam Hours</div><div class="ic-value">Fri: 5 PM – 12 MN</div></div>
+            <div class="info-card"><div class="ic-label">Price Range</div><div class="ic-value">₱₱ (Moderate)</div></div>
+            <div class="info-card"><div class="ic-label">Vibe</div><div class="ic-value">Live Music, DJ, Beach Bar</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Tips</div>
+            <ul class="tips-list">
+              <li>Tavern by the Sea: Choose beachside tables — the sea breeze + music combo is unbeatable</li>
+              <li>Flotsam & Jetsam: A Friday night here is electric — arrive before 8 PM to get a good spot</li>
+              <li>The strip gets busy fast on Friday nights — pace yourselves, you have surfing tomorrow!</li>
+              <li>Most establishments accept GCash but always have some cash as backup</li>
+              <li>Wear reef-friendly footwear if walking on the beach at night</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-content" id="detail-d1-s9">
+          <div class="detail-header">
+            <div class="detail-time">8:30 – 9:00 PM · Day 1</div>
+            <div class="detail-name">Return to Auntie Ludy's</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Camansi, San Fernando, La Union</div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">Head back to base for the night. Sleep early — surfing lessons start at 7 AM tomorrow and you'll want to be energized. It's been a full, incredible day!</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Drive Time</div><div class="ic-value">~20–30 mins</div></div>
+            <div class="info-card"><div class="ic-label">Wake Up</div><div class="ic-value fee">6:00 AM tomorrow</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Tips</div>
+            <ul class="tips-list">
+              <li>Prepare your swimwear, sunscreen, and surf gear before sleeping</li>
+              <li>Drink plenty of water — the sea air and alcohol can dehydrate you</li>
+              <li>Set an alarm for 6:00 AM — Day 2 starts bright and early!</li>
+            </ul>
+          </div>
+        </div>
+
+      </div><!-- /detail-panel -->
+    </div><!-- /map-detail-panel -->
+  </div><!-- /day-content -->
+</div><!-- /day1 -->
+
+
+<!-- DAY DIVIDER -->
+<div class="section-divider">
+  <div class="divider-tag">End of Day 1 · Goodnight La Union</div>
+</div>
+
+
+<!-- ======================== DAY 2 ======================== -->
+<div class="day-section day2" id="day2">
+  <div class="day-header day2-header">
+    <div>
+      <div class="day-label">Day 02 of 02</div>
+      <div class="day-title">Surf, Sun & Sunset</div>
+    </div>
+    <div class="day-date">Saturday, May 16, 2026</div>
+  </div>
+
+  <div class="day-content" id="day2-content">
+    <!-- STOPS -->
+    <div class="stops-panel day2" id="day2-stops">
+
+      <div class="stop-card" data-stop="d2-s0" onclick="selectStop('d2-s0','day2')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">6:00 AM</div>
+          <div class="stop-name">Morning Prep at Auntie Ludy's</div>
+          <span class="stop-type-badge badge-rest">Prep</span>
+          <div class="stop-preview">Wake up, freshen up, pack swimwear and sunscreen for the surfing morning.</div>
+        </div>
+      </div>
+
+      <div class="stop-card" data-stop="d2-s1" onclick="selectStop('d2-s1','day2')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">7:00 – 11:00 AM</div>
+          <div class="stop-name">Surfing + Urbiztondo Exploration</div>
+          <span class="stop-type-badge badge-surf">Surf & Beach</span>
+          <div class="stop-preview">Surfing lessons at Urbiztondo Beach, plus Mebuyan Vessel art installation, El Union Coffee, and the local strip.</div>
+        </div>
+      </div>
+
+      <div class="stop-card" data-stop="d2-s2" onclick="selectStop('d2-s2','day2')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">11:00 AM – 2:00 PM</div>
+          <div class="stop-name">Lunch at Auntie Ludy's + Pack Up</div>
+          <span class="stop-type-badge badge-rest">Lunch & Pack</span>
+          <div class="stop-preview">Final meal at Auntie Ludy's, say your goodbyes, and load up the car for the afternoon adventure.</div>
+        </div>
+      </div>
+
+      <div class="stop-card" data-stop="d2-s3" onclick="selectStop('d2-s3','day2')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">2:00 – 5:00 PM</div>
+          <div class="stop-name">Agoo Eco Park</div>
+          <span class="stop-type-badge badge-nature">Nature & Sunset</span>
+          <div class="stop-preview">A man-made agoho forest park by the sea — picnic, rest, and wait for golden hour sunset.</div>
+        </div>
+      </div>
+
+      <div class="stop-card" data-stop="d2-s4" onclick="selectStop('d2-s4','day2')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">5:00 – 6:30 PM</div>
+          <div class="stop-name">Drive to Pozzurubio</div>
+          <span class="stop-type-badge badge-travel">Transit (No Tolls)</span>
+          <div class="stop-preview">Scenic route to Amagbagan, Pozzurubio, Pangasinan via the fastest no-toll path.</div>
+        </div>
+      </div>
+
+      <div class="stop-card" data-stop="d2-s5" onclick="selectStop('d2-s5','day2')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">6:30 – 8:00 PM</div>
+          <div class="stop-name">Visit Relatives in Pozzurubio</div>
+          <span class="stop-type-badge badge-rest">Family Visit</span>
+          <div class="stop-preview">A cherished stopover with relatives in Pozzurubio, Pangasinan before the drive back to Manila.</div>
+        </div>
+      </div>
+
+      <div class="stop-card" data-stop="d2-s6" onclick="selectStop('d2-s6','day2')">
+        <div class="stop-timeline">
+          <div class="stop-dot"></div>
+        </div>
+        <div class="stop-body">
+          <div class="stop-time">8:00 PM</div>
+          <div class="stop-name">Head Back to Manila</div>
+          <span class="stop-type-badge badge-travel">Return Trip</span>
+          <div class="stop-preview">Final drive home via TPLEX → SCTEX → NLEX with tolls. Estimated arrival in QC by 2 AM.</div>
+        </div>
+      </div>
+
+    </div><!-- /stops-panel -->
+
+    <!-- MAP + DETAIL -->
+    <div class="map-detail-panel">
+      <div class="map-container" id="day2-map">
+        <iframe
+          id="day2-iframe"
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Urbiztondo+Beach+San+Juan+La+Union+Philippines&zoom=14"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <a class="map-open-btn" id="day2-maplink" href="https://maps.google.com/?q=Urbiztondo+Beach+San+Juan+La+Union" target="_blank" style="background:#c97c2a">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Open in Google Maps
+        </a>
+      </div>
+
+      <div class="detail-panel day2" id="day2-detail">
+        <div class="detail-empty" id="day2-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <p>Click any stop on the left to see details</p>
+        </div>
+
+        <div class="detail-content" id="detail-d2-s0">
+          <div class="detail-header">
+            <div class="detail-time">6:00 AM · Day 2</div>
+            <div class="detail-name">Morning Prep at Auntie Ludy's</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Camansi, San Fernando, La Union</div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">Rise and shine! Today is surf day. Give yourself a full hour to freshen up, eat a light breakfast, and pack your beach bag before heading to Urbiztondo.</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Wake Up</div><div class="ic-value">6:00 AM</div></div>
+            <div class="info-card"><div class="ic-label">Depart By</div><div class="ic-value">6:45 AM</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 What to Pack</div>
+            <ul class="tips-list">
+              <li>Swimwear (change beforehand if possible — facilities at the beach can be busy)</li>
+              <li>High-SPF waterproof sunscreen — the May sun at La Union is intense</li>
+              <li>Waterproof pouch for your phone</li>
+              <li>Rash guard for sun protection while surfing</li>
+              <li>Light breakfast — surfing on a very full stomach is uncomfortable</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-content" id="detail-d2-s1">
+          <div class="detail-header">
+            <div class="detail-time">7:00 – 11:00 AM · Day 2</div>
+            <div class="detail-name">Surfing at Urbiztondo + Explore San Juan</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Urbiztondo, San Juan, La Union</div>
+            <div class="rating-stars">Urbiztondo Beach ★★★★½ · El Union ★★★★½</div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">Urbiztondo Beach is La Union's legendary surf spot — the surfing capital of Northern Philippines. Waves here are ideal for beginners (1–3 feet on calm days, up to 5–6 feet when active). After your lesson, check out the Mebuyan Vessel art installation on the beach, then grab La Union's most famous coffee at El Union Coffee before wrapping up the beach morning.</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Surf Lesson</div><div class="ic-value fee">₱350–500/hr incl. board</div></div>
+            <div class="info-card"><div class="ic-label">Board Rental</div><div class="ic-value fee">₱100–150/hr</div></div>
+            <div class="info-card"><div class="ic-label">El Union Hours</div><div class="ic-value">7:00 AM – 10:00 PM (Sat)</div></div>
+            <div class="info-card"><div class="ic-label">Mebuyan Entry</div><div class="ic-value free">FREE (view from outside)</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Surfing Tips</div>
+            <ul class="tips-list">
+              <li>Book a surf instructor directly on the beach — rates are fixed and fair</li>
+              <li>May has good surf conditions — waves are consistent but not too intimidating for beginners</li>
+              <li>2-hour lesson is the sweet spot for first-timers — enough to get standing up</li>
+              <li>Note: Mebuyan Vessel was damaged by a typhoon in Nov 2025 — it may still be closed; you can view it from outside the caution tape area</li>
+              <li>El Union is iconic — must-try: the Dirty Horchata (cinnamon rice milk with espresso shot)</li>
+              <li>El Union also serves excellent grilled cheese — perfect post-surf snack</li>
+            </ul>
+          </div>
+          <div class="rec-section">
+            <div class="rec-label">⭐ Must-Try at El Union</div>
+            <p class="rec-text">The Dirty Horchata — a creamy, cinnamon-spiced rice milk drink topped with a shot of espresso. It's a La Union landmark in a cup. Also grab the grilled cheese: buttery, crispy edges, perfectly melted inside.</p>
+          </div>
+        </div>
+
+        <div class="detail-content" id="detail-d2-s2">
+          <div class="detail-header">
+            <div class="detail-time">11:00 AM – 2:00 PM · Day 2</div>
+            <div class="detail-name">Lunch at Auntie Ludy's + Pack Up</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Camansi, San Fernando, La Union</div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">Drive back to Auntie Ludy's for a proper home-cooked lunch and then pack up all your belongings. Take your time saying goodbye — these family moments are special. Aim to be fully loaded and ready to go by 2 PM.</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Duration</div><div class="ic-value">3 hours</div></div>
+            <div class="info-card"><div class="ic-label">Depart By</div><div class="ic-value">2:00 PM sharp</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Tips</div>
+            <ul class="tips-list">
+              <li>Do a final room check before leaving — chargers, sunscreen, wet swimwear</li>
+              <li>Pack wet swimwear in a separate plastic bag to avoid soaking your luggage</li>
+              <li>Rinse off properly after surfing to avoid saltwater skin irritation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-content" id="detail-d2-s3">
+          <div class="detail-header">
+            <div class="detail-time">2:00 – 5:00 PM · Day 2</div>
+            <div class="detail-name">Agoo Eco Park</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Sta. Rita, Agoo, La Union</div>
+            <div class="rating-stars">★★★★½ <span style="color:rgba(245,237,224,0.4);font-size:0.7rem">(608 reviews)</span></div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">Agoo Eco Park is a stunning man-made agoho (Australian pine) forest nestled right beside the sea — one of La Union's most serene hidden gems. Long rows of trees create natural corridors perfect for picnics and lazy afternoon walks. The park sits right at the coast, giving you forest shade during the afternoon heat and then a clear sightline to the sea for golden hour. The sunset here is genuinely magical.</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Entrance Fee</div><div class="ic-value fee">₱20 per person</div></div>
+            <div class="info-card"><div class="ic-label">Hours</div><div class="ic-value">Open 24 hours</div></div>
+            <div class="info-card"><div class="ic-label">Facilities</div><div class="ic-value">Restrooms, Parking</div></div>
+            <div class="info-card"><div class="ic-label">Best Time</div><div class="ic-value">4:30–5:30 PM sunset</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Tips</div>
+            <ul class="tips-list">
+              <li>Bring a picnic blanket or mat — the ground under the trees is perfect for lounging</li>
+              <li>Pack snacks and drinks — food stalls may be limited inside</li>
+              <li>The beach side of the park is where you get the best sunset views</li>
+              <li>Plenty of parking space available — arrive by 2 PM for the shade spots</li>
+              <li>Bikes and hammocks are sometimes available for rent on site</li>
+            </ul>
+          </div>
+          <div class="rec-section">
+            <div class="rec-label">⭐ Perfect For</div>
+            <p class="rec-text">Families, barkada picnics, and anyone wanting a peaceful wind-down before the long drive home. The combination of forest, breeze, and sunset is genuinely one of La Union's best-kept secrets.</p>
+          </div>
+        </div>
+
+        <div class="detail-content" id="detail-d2-s4">
+          <div class="detail-header">
+            <div class="detail-time">5:00 – 6:30 PM · Day 2</div>
+            <div class="detail-name">Drive to Pozzurubio via No-Toll Route</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Agoo → Amagbagan, Pozzurubio, Pangasinan</div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">From Agoo Eco Park, you'll take the fastest no-toll route through Pangasinan toward Pozzurubio (Pozorrubio). This inland route is a scenic alternate to the expressway — passing through smaller towns and provincial roads. It's roughly 1.5 hours if traffic cooperates.</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Drive Time</div><div class="ic-value">~1.5 hours</div></div>
+            <div class="info-card"><div class="ic-label">Route Type</div><div class="ic-value">No Toll / National Road</div></div>
+            <div class="info-card"><div class="ic-label">Distance</div><div class="ic-value">~65 km</div></div>
+            <div class="info-card"><div class="ic-label">Toll Cost</div><div class="ic-value free">FREE</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Tips</div>
+            <ul class="tips-list">
+              <li>Use Waze/Google Maps set to "avoid tolls" for the most accurate no-toll route</li>
+              <li>Fill up gas in Agoo before departing — fewer stations on rural roads</li>
+              <li>Road quality varies — take it steady on unfamiliar provincial roads</li>
+              <li>The drive through Pangasinan is actually quite scenic at dusk</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-content" id="detail-d2-s5">
+          <div class="detail-header">
+            <div class="detail-time">6:30 – 8:00 PM · Day 2</div>
+            <div class="detail-name">Visit Relatives in Pozzurubio</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Pozzurubio (Pozorrubio), Pangasinan</div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">A warm stopover with relatives in Pozorrubio, Pangasinan — a quiet municipality known as a gateway between Pangasinan and the Cordilleras. This family visit adds a heartwarming touch to the journey home. Rest, catch up, and have a light merienda before the final leg back to Manila.</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Duration</div><div class="ic-value">~1.5 hours</div></div>
+            <div class="info-card"><div class="ic-label">Depart By</div><div class="ic-value">8:00 PM</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Tips</div>
+            <ul class="tips-list">
+              <li>A short rest here is great before tackling the night drive back to Manila</li>
+              <li>Coordinate with relatives in advance so they're expecting you</li>
+              <li>Pozorrubio is known for good local produce — perfect to bring home pasalubong</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-content" id="detail-d2-s6">
+          <div class="detail-header">
+            <div class="detail-time">8:00 PM · Day 2</div>
+            <div class="detail-name">Return to Manila</div>
+            <div class="detail-location"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Pozzurubio → TPLEX → SCTEX → NLEX → QC</div>
+          </div>
+          <div class="detail-divider"></div>
+          <p class="detail-desc">The final stretch home. From Pozzurubio, hop on TPLEX southbound, through SCTEX, then NLEX back into Metro Manila. The late departure means lighter traffic in most of the expressway sections.</p>
+          <div class="info-grid">
+            <div class="info-card"><div class="ic-label">Drive Time</div><div class="ic-value">~5–6 hours</div></div>
+            <div class="info-card"><div class="ic-label">Route</div><div class="ic-value">TPLEX → SCTEX → NLEX</div></div>
+            <div class="info-card"><div class="ic-label">Toll Est.</div><div class="ic-value">₱400–600 (one way)</div></div>
+            <div class="info-card"><div class="ic-label">Est. Arrival</div><div class="ic-value">~2:00–3:00 AM</div></div>
+          </div>
+          <div class="tips-section">
+            <div class="tips-label">💡 Drive-Home Tips</div>
+            <ul class="tips-list">
+              <li>Rest well in Pozzurubio before this drive — fatigue is the biggest risk</li>
+              <li>Designate a fresh driver or take turns driving every 2 hours</li>
+              <li>Have coffee, snacks, and energy drinks ready in the car</li>
+              <li>Stop at Petron/Shell SCTEX for a proper break if needed around 10–11 PM</li>
+              <li>Keep an emergency kit in the car (first aid, tire inflator, extra water)</li>
+              <li>Playlist time! Load up a good road trip mix to keep the driver alert</li>
+            </ul>
+          </div>
+          <div class="rec-section">
+            <div class="rec-label">🏁 Safe Travels!</div>
+            <p class="rec-text">What a trip — from historic watchtowers at sunrise to surfing at El-Yu, hilltop sunsets, and family love. La Union will be waiting for your next visit. Drive safe and enjoy the memories!</p>
+          </div>
+        </div>
+
+      </div><!-- /detail-panel -->
+    </div><!-- /map-detail-panel -->
+  </div><!-- /day-content -->
+</div><!-- /day2 -->
+
+<div class="footer">
+  La Union Trip · May 15–16, 2026 &nbsp;·&nbsp; Made with ♥ for the crew
+</div>
+
+<script>
+// Generate stars
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 80; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const size = Math.random() * 2.5 + 0.5;
+  s.style.cssText = `
+    width: ${size}px;
+    height: ${size}px;
+    top: ${Math.random() * 70}%;
+    left: ${Math.random() * 100}%;
+    --dur: ${Math.random() * 3 + 2}s;
+    animation-delay: ${Math.random() * 3}s;
+  `;
+  starsEl.appendChild(s);
+}
+
+// Map embed data per stop
+const stopMaps = {
+  // Day 1
+  'd1-s0': {
+    embed: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Commonwealth+Avenue+Quezon+City+Philippines&zoom=13',
+    link: 'https://maps.google.com/?q=Commonwealth+Avenue+Quezon+City',
+    color: '#1a5f7a'
+  },
+  'd1-s1': {
+    embed: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Baluarte+Watchtower+Luna+La+Union+Philippines&zoom=15',
+    link: 'https://maps.google.com/?q=Baluarte+Watchtower+Luna+La+Union',
+    color: '#1a5f7a'
+  },
+  'd1-s2': {
+    embed: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Bahay+na+Bato+Luna+La+Union+Philippines&zoom=15',
+    link: 'https://maps.google.com/?q=Bahay+na+Bato+Luna+La+Union',
+    color: '#1a5f7a'
+  },
+  'd1-s3': {
+    embed: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Almeida+Man+Made+Forest+La+Union+Philippines&zoom=14',
+    link: 'https://maps.google.com/?q=Almeida+Man+Made+Forest+La+Union',
+    color: '#2d6a4f'
+  },
+  'd1-s4': {
+    embed: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Kabsat+Restaurant+San+Juan+La+Union+Philippines&zoom=15',
+    link: 'https://maps.google.com/?q=Kabsat+San+Juan+La+Union',
+    color: '#c97c2a'
+  },
+  'd1-s5': {
+    embed: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Camansi+San+Fernando+La+Union+Philippines&zoom=13',
+    link: 'https://maps.google.com/?q=Camansi+San+Fernando+La+Union',
+    color: '#1a5f7a'
+  },
+  'd1-s6': {
+    embed: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=San+Fernando+La+Union+Philippines&zoom=13',
+    link: 'https://maps.google.com/?q=San+Fernando+La+Union',
+    color: '#1a5f7a'
+  },
+  'd1-s7': {
+    embed: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=The+Mansion+La+Union+San+Juan&zoom=15',
+    link: 'https://maps.google.com/?q=The+Mansion+La+Union',
+    color: '#c97c2a'
+  },
+  'd1-s8': {
+    embed: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Tavern+by+the+Sea+San+Juan+La+Union+Philippines&zoom=15',
+    link: 'https://maps.google.com/?q=Tavern+by+the+Sea+San+Juan+La+Union',
+    color: '#5a1e64'
+  },
+  'd1-s9': {
+    embed: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=San+Fernando+La+Union+Philippines&zoom=13',
+    link: 'https://maps.google.com/?q=San+Fernando+La+Union',
+    color: '#1a5f7a'
+  },
+  // Day 2
+  'd2-s0': {
+    embed: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=San+Fernando+La+Union+Philippines&zoom=13',
+    link: 'https://maps.google.com/?q=San+Fernando+La+Union',
+    color: '#c97c2a'
+  },
+  'd2-s1': {
+    embed: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Urbiztondo+Beach+San+Juan+La+Union+Philippines&zoom=15',
+    link: 'https://maps.google.com/?q=Urbiztondo+Beach+San+Juan+La+Union',
+    color: '#4db8d4'
+  },
+  'd2-s2': {
+    embed: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=San+Fernando+La+Union+Philippines&zoom=13',
+    link: 'https://maps.google.com/?q=San+Fernando+La+Union',
+    color: '#c97c2a'
+  },
+  'd2-s3': {
+    embed: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Agoo+Eco+Park+La+Union+Philippines&zoom=14',
+    link: 'https://maps.google.com/?q=Agoo+Eco+Park+La+Union',
+    color: '#2d6a4f'
+  },
+  'd2-s4': {
+    embed: 'https://www.google.com/maps/embed/v1/directions?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&origin=Agoo+La+Union+Philippines&destination=Pozorrubio+Pangasinan+Philippines&mode=driving',
+    link: 'https://maps.google.com/maps/dir/Agoo+La+Union/Pozorrubio+Pangasinan',
+    color: '#c97c2a'
+  },
+  'd2-s5': {
+    embed: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Pozorrubio+Pangasinan+Philippines&zoom=13',
+    link: 'https://maps.google.com/?q=Pozorrubio+Pangasinan',
+    color: '#c97c2a'
+  },
+  'd2-s6': {
+    embed: 'https://www.google.com/maps/embed/v1/directions?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&origin=Pozorrubio+Pangasinan&destination=Quezon+City+Metro+Manila+Philippines&mode=driving',
+    link: 'https://maps.google.com/maps/dir/Pozorrubio+Pangasinan/Quezon+City+Metro+Manila',
+    color: '#1a5f7a'
+  }
+};
+
+let activeDay1 = null;
+let activeDay2 = null;
+
+function selectStop(stopId, day) {
+  const isDay1 = day === 'day1';
+  const iframeId = isDay1 ? 'day1-iframe' : 'day2-iframe';
+  const maplinkId = isDay1 ? 'day1-maplink' : 'day2-maplink';
+  const emptyId = isDay1 ? 'day1-empty' : 'day2-empty';
+  const stopsPanel = isDay1 ? 'day1-stops' : 'day2-stops';
+
+  // Deactivate previous cards
+  const prevActive = isDay1 ? activeDay1 : activeDay2;
+  if (prevActive) {
+    const prevCard = document.querySelector(`[data-stop="${prevActive}"]`);
+    const prevDetail = document.getElementById(`detail-${prevActive}`);
+    if (prevCard) prevCard.classList.remove('active');
+    if (prevDetail) prevDetail.classList.remove('visible');
+  }
+
+  // Activate new card
+  const card = document.querySelector(`[data-stop="${stopId}"]`);
+  const detail = document.getElementById(`detail-${stopId}`);
+  const empty = document.getElementById(emptyId);
+
+  if (card) card.classList.add('active');
+  if (detail) detail.classList.add('visible');
+  if (empty) empty.style.display = 'none';
+
+  // Update map
+  const mapData = stopMaps[stopId];
+  if (mapData) {
+    document.getElementById(iframeId).src = mapData.embed;
+    const mapLink = document.getElementById(maplinkId);
+    mapLink.href = mapData.link;
+    mapLink.style.background = mapData.color;
+  }
+
+  if (isDay1) activeDay1 = stopId;
+  else activeDay2 = stopId;
+}
+
+// Auto-select first stop on load
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    selectStop('d1-s1', 'day1');
+    selectStop('d2-s1', 'day2');
+  }, 500);
+});
+
+// Smooth scroll for pill links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.getElementById(a.getAttribute('href').slice(1));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
